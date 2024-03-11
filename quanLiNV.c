@@ -221,6 +221,7 @@ void swap(struct NhanVien *a, struct NhanVien *b) {
    *a = *b;
    *b = temp;
 }
+
 void SelectionSort(struct NhanVien nv[], int n) {
       int min;
       for (int i = 0; i < n - 1; ++i) {
