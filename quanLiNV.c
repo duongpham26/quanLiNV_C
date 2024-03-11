@@ -215,8 +215,23 @@ void xemBangLuongNhanVien(struct NhanVien nv[], int n) {
    }
 }
 
-void sapXepNhanVien(struct NhanVien nv[], int n) {
-   
+void swap(struct NhanVien *a, struct NhanVien *b) {
+   struct NhanVien temp;
+   temp = *a;
+   *a = *b;
+   *b = temp;
+}
+void SelectionSort(struct NhanVien nv[], int n) {
+      int min;
+      for (int i = 0; i < n - 1; ++i) {
+         min = i;
+         for (int j = i + 1; j < n; ++j) {
+            if (nv[j].luongThuongLinh < nv[min].luongThuongLinh) {
+               min = j;
+            }
+            if(min != i) swap(&nv[min], &nv[i]);
+         }
+      }
 }
 
 void xuatFile(struct NhanVien nv[], int n) {
@@ -264,6 +279,7 @@ int main() {
 	int option;
 	do
 	{ 
+      printf("\n==========================================");
 		printf("\n**********MENU QUAN LI NHAN VIEN**********\n");
 		printf("1. Nhap danh sach \n");
 		printf("2. Xuat danh sach\n");
@@ -273,7 +289,8 @@ int main() {
 		printf("6. Xem bang luong nhan vien\n");
 		printf("7. Tim thong tin mot nhan vien\n");																																																																							
 		printf("8. Xuat danh sach nhan vien vao file\n");																																																																							
-		printf("9. Doc danh sach nhan vien tu file\n");																																																																							
+		printf("9. Doc danh sach nhan vien tu file\n");	
+      printf("10. Sắp xếp theo lương\n");																																																																						
 		printf("0. Thoat\n");
 		printf("Nhap lua chon: ");
 		scanf("%d", &option);
@@ -323,6 +340,13 @@ int main() {
          docFile(NV, &N);
          printf("\nNhan phim bat ki de thoat...");
          getch();
+         break;
+      case 10:
+         SelectionSort(NV, N);
+         printf("\nNhan phim bat ki de thoat...");
+         getch();
+         break;
+      default:
          break;
       }
 	} while (option != 0);	
